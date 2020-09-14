@@ -29,6 +29,9 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'arrow-parens': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'function-paren-newline': 'off',
     'linebreak-style': 'off',
     'import/prefer-default-export': 'off',
     'no-use-before-define': [0],
