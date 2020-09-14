@@ -1,6 +1,12 @@
 import React from 'react';
+import { configure } from 'mobx';
 import logo from './logo.svg';
 import './App.css';
+
+configure({
+  enforceActions: 'always',
+  computedRequiresReaction: true,
+});
 
 export const App: React.FC = () => (
   <div className="App">
