@@ -1,6 +1,6 @@
 import { autorun } from 'mobx';
+import { Coin } from 'src/ConnectGame';
 import { Matrix } from './Matrix';
-import { Coin } from './types';
 
 describe('Matrix', () => {
   describe('Finding the winner', () => {
@@ -13,7 +13,7 @@ describe('Matrix', () => {
     let disposer = () => {};
 
     beforeEach(() => {
-      matrix = new Matrix({ width: 4, height: 8, winNumber: 3 });
+      matrix = new Matrix(4, 8, 3);
       winner = Coin.Yellow;
       checkWinner = jest.fn(saveWinner);
       disposer = autorun(checkWinner);

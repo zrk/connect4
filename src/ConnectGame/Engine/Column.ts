@@ -1,23 +1,19 @@
 import { observable, computed, action } from 'mobx';
-import { Coin, Cell } from './types';
+import { Coin, CellContent, Column as Interface } from 'src/ConnectGame';
 import { elementInARow } from './elementInARow';
 
-export class Column {
-  private readonly height: number;
-
-  private readonly winNumber: number;
-
+export class Column implements Interface {
   @observable private topEmptyCellIndex = 0;
 
-  @observable readonly cells: { [key: number]: Cell } = {};
+  @observable readonly cells: { [key: number]: CellContent } = {};
 
-  constructor({ height = 1, winNumber = 1 }) {
-    this.height = height;
-    this.winNumber = winNumber;
-  }
+  constructor(
+    private readonly height = 1,
+    private readonly winNumber = 1,
+  ) {}
 
   @computed
-  get cellNumbers(): number[] {
+  get cellKeys(): number[] {
     return Array.from(Array(this.height), (_, i) => i);
   }
 
@@ -39,7 +35,7 @@ export class Column {
   @computed
   get winner(): Coin | undefined {
     return elementInARow(
-      this.cellNumbers.map(i => this.cells[i]),
+      this.cellKeys.map(i => this.cells[i]),
       this.winNumber,
     );
   }

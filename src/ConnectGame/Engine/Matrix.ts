@@ -1,7 +1,6 @@
 import { observable, computed, action } from 'mobx';
 import { createTransformer } from 'mobx-utils';
-import { Coin } from './types';
-import { WIN_NUMBER, WIDTH, HEGHT } from './constants';
+import { Player } from 'src/ConnectGame';
 import { Column } from './Column';
 import { elementInARow } from './elementInARow';
 
@@ -14,7 +13,7 @@ export class Matrix {
 
   @computed
   private get createColumn() {
-    return () => new Column({ height: this.height, winNumber: this.winNumber });
+    return () => new Column(this.height, this.winNumber);
   }
 
   @computed
@@ -27,7 +26,7 @@ export class Matrix {
     return Array.from(Array(this.width)).map((_, i) => i);
   }
 
-  constructor({ width = WIDTH, height = HEGHT, winNumber = WIN_NUMBER }) {
+  constructor(width: number, height: number, winNumber: number) {
     this.init(width, height, winNumber);
   }
 
@@ -38,23 +37,23 @@ export class Matrix {
     this.winNumber = winNumber;
   }
 
-  private readonly rowWinner = createTransformer<number, Coin | undefined>(index => {
+  private readonly rowWinner = createTransformer<number, Player | undefined>(index => {
     const row = this.columns.map(column => column.cells[index]);
     return elementInARow(row, this.winNumber);
   });
 
   @computed
-  private get winnerInRows(): Coin | undefined {
+  private get winnerInRows(): Player | undefined {
     return this.rowNumbers.map(this.rowWinner).find(Boolean);
   }
 
   @computed
-  private get winnerInColumns(): Coin | undefined {
+  private get winnerInColumns(): Player | undefined {
     return this.columns.map(column => column.winner).find(Boolean);
   }
 
   @computed
-  get winner(): Coin | undefined {
+  get winner(): Player | undefined {
     return this.winnerInColumns || this.winnerInRows;
   }
 }

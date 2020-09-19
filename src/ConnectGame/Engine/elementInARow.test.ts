@@ -1,5 +1,5 @@
+import { Coin } from 'src/ConnectGame';
 import { elementInARow } from './elementInARow';
-import { Coin } from './types';
 
 describe('elementInARow()', () => {
   it('returns array element that is present N times in a row', () => {

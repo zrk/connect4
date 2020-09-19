@@ -1,16 +1,16 @@
 import { autorun } from 'mobx';
+import { Coin } from 'src/ConnectGame';
 import { Column } from './Column';
-import { Coin } from './types';
 
 describe('Column', () => {
   it('returns true on successful insert, false on unsuccessful', () => {
-    const column = new Column({ height: 1 });
+    const column = new Column(1);
     expect(column.insert(Coin.Red)).toBe(true);
     expect(column.insert(Coin.Red)).toBe(false);
   });
 
   it('accesses cells in reactive manner', () => {
-    const column = new Column({ height: 8 });
+    const column = new Column(8);
 
     let firstCellShouldBecome: Coin | undefined;
 
@@ -43,7 +43,7 @@ describe('Column', () => {
   });
 
   it('shows when it is full of coins, reactive', () => {
-    const column = new Column({ height: 2 });
+    const column = new Column(2);
     let isFull = true;
 
     const checkIsFull = jest.fn(() => {
@@ -71,7 +71,7 @@ describe('Column', () => {
   });
 
   it('computes winner, reactive', () => {
-    const column = new Column({ height: 8, winNumber: 3 });
+    const column = new Column(8, 3);
 
     let winner: Coin | undefined = Coin.Yellow;
 
