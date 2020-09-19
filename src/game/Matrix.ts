@@ -39,7 +39,7 @@ export class Matrix {
   }
 
   private readonly rowWinner = createTransformer<number, Coin | undefined>(index => {
-    const row = this.columns.map(column => column.cell(index));
+    const row = this.columns.map(column => column.cells[index]);
     return elementInARow(row, this.winNumber);
   });
 

@@ -1,4 +1,4 @@
-import { autorun, reaction } from 'mobx';
+import { autorun } from 'mobx';
 import { Column } from './Column';
 import { Coin } from './types';
 
@@ -15,11 +15,11 @@ describe('Column', () => {
     let firstCellShouldBecome: Coin | undefined;
 
     const firstCellCheck = jest.fn(() =>
-      expect(column.cell(0)).toBe(firstCellShouldBecome),
+      expect(column.cells[0]).toBe(firstCellShouldBecome),
     );
 
     const secondCellCheck = jest.fn(() =>
-      expect(column.cell(1)).toBe(firstCellShouldBecome),
+      expect(column.cells[1]).toBe(firstCellShouldBecome),
     );
 
     firstCellShouldBecome = undefined;
