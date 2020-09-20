@@ -26,7 +26,7 @@ export class Gameplay implements Interface {
     this.init(board, winNumber);
   }
 
-  @action
+  @action.bound
   init(
     board = this.board,
     winNumber = this.winNumber,
@@ -37,7 +37,7 @@ export class Gameplay implements Interface {
     this.currentPlayer = firstTurn;
   }
 
-  @action
+  @action.bound
   private switchPlayer(): void {
     this.currentPlayer += 1;
     if (!(this.currentPlayer in Coin)) this.currentPlayer = 0;
@@ -87,7 +87,7 @@ export class Gameplay implements Interface {
     return this.currentPlayer;
   }
 
-  @action
+  @action.bound
   makeMove(columnKey: number): boolean {
     if (this.isOver) return false;
 

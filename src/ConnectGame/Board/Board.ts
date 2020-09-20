@@ -14,7 +14,7 @@ export class Board implements Interface {
     this.init(width, height);
   }
 
-  @action
+  @action.bound
   init(width = this.width, height = this.height): void {
     this.width = width;
     this.height = height;

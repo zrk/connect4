@@ -20,7 +20,7 @@ export class Column implements Interface {
     return this.topEmptyCellIndex >= this.height;
   }
 
-  @action
+  @action.bound
   insert(coin: Coin): boolean {
     if (this.isFull) return false;
 
