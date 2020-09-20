@@ -31,6 +31,11 @@ describe('elementInARow()', () => {
       .toBe(undefined);
   });
 
+  it('does not ignore when undefined breaks the row', () => {
+    expect(elementInARow([1, 2, undefined, 2, 2, 3, 4], 3))
+      .toBe(undefined);
+  });
+
   it('works with Coins', () => {
     const array = [
       Coin.Yellow,
