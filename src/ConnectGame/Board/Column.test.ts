@@ -69,37 +69,4 @@ describe('Column', () => {
 
     disposer();
   });
-
-  it('computes winner, reactive', () => {
-    const column = new Column(8, 3);
-
-    let winner: Coin | undefined = Coin.Yellow;
-
-    const checkWinner = jest.fn(() => {
-      winner = column.winner;
-    });
-
-    const disposer = autorun(checkWinner);
-
-    expect(winner).toBeFalsy();
-    expect(checkWinner.mock.calls.length).toBe(1);
-
-    column.insert(Coin.Yellow);
-    expect(winner).toBeFalsy();
-    expect(checkWinner.mock.calls.length).toBe(1);
-
-    column.insert(Coin.Red);
-    expect(winner).toBeFalsy();
-    expect(checkWinner.mock.calls.length).toBe(1);
-
-    column.insert(Coin.Red);
-    expect(winner).toBeFalsy();
-    expect(checkWinner.mock.calls.length).toBe(1);
-
-    column.insert(Coin.Red);
-    expect(winner).toBe(Coin.Red);
-    expect(checkWinner.mock.calls.length).toBe(2);
-
-    disposer();
-  });
 });

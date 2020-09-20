@@ -7,19 +7,29 @@ export type Player = Coin;
 
 export type CellContent = Coin | undefined;
 
-export interface Column {
+export interface CellsObject {
   readonly cellKeys: number[];
-  readonly cells: { [key: number]: CellContent };
-  readonly isFull: boolean;
+  readonly cells: { readonly [key: number]: CellContent };
+}
 
+export interface Column extends CellsObject{
+  readonly isFull: boolean;
   insert(coin: Coin): boolean;
 }
 
-export interface Game {
-  readonly isEnded: boolean;
-  readonly winner?: Player;
-  readonly turn?: Player;
-  readonly columns: Column[];
+export type Row = CellsObject;
 
-  init(width: number, height: number, winNumber: number): void;
+export interface Board {
+  readonly columns: Column[];
+  readonly rows: Row[];
+  init(width?: number, height?: number): void;
+}
+
+export interface Gameplay {
+  readonly isOver: boolean;
+  readonly winner: Player | undefined;
+  readonly turn: Player | undefined;
+
+  init(field?: Board, winNumber?: number): void;
+  makeMove(columnKey: number): boolean;
 }
