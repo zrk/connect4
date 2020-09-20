@@ -36,8 +36,6 @@ module.exports = {
     'function-paren-newline': 'off',
     'linebreak-style': 'off',
     'import/prefer-default-export': 'off',
-    'no-use-before-define': [0],
-    '@typescript-eslint/no-use-before-define': [1],
     // 'prettier/prettier': [
     //   'error',
     //   {
