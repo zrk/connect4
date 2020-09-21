@@ -1,7 +1,8 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 import React from 'react';
 import { configure } from 'mobx';
-import logo from './logo.svg';
-import './App.css';
+import { Connect4 } from './ConnectGame';
 
 configure({
   enforceActions: 'always',
@@ -9,22 +10,16 @@ configure({
 });
 
 export const App: React.FC = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit
-        <code>src/App.tsx</code>
-        and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
+  <div
+    css={{
+      textAlign: 'center',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
+  >
+    <Connect4 css={{ width: 340 }} />
   </div>
 );
