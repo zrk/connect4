@@ -18,6 +18,7 @@ const colorsMap = new Map([
 export const CoinView = observer<Props>(({ coin, ...props }) => (
   <SquareDiv
     css={{
+      width: '100%',
       background: `radial-gradient(${colorsMap.get(coin)} 64%, transparent 68%)`,
     }}
     {...props}

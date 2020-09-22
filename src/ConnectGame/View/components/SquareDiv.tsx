@@ -11,9 +11,11 @@ export const SquareDiv: React.FC<Props> = ({ children, ...props }) => (
   <div
     css={{
       position: 'relative',
-      width: '100%',
-      height: 0,
-      paddingTop: '100%',
+      '&::before': {
+        content: '""',
+        display: 'block',
+        paddingTop: '100%',
+      },
     }}
     {...props}
   >
