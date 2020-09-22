@@ -2,24 +2,50 @@
 import { jsx } from '@emotion/core';
 import { observer } from 'mobx-react-lite';
 import { Gameplay } from 'src/ConnectGame';
+import { CoinView } from './components';
 
 interface Props {
   game: Gameplay;
 }
 
-export const Message = observer<Props>(({ game }) => (
-  <div>
-    <div>
-      Turn:
-      {game.turn}
-    </div>
-    <div>
-      Winner:
-      {game.winner}
-    </div>
-    <div>
-      isOver:
-      {game.isOver ? 'yes' : 'no'}
-    </div>
-  </div>
-));
+const COIN_SIZE = 1.5;
+
+const Content = (props: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    css={{
+      display: 'flex',
+      alignItems: 'center',
+      textTransform: 'uppercase',
+      lineHeight: COIN_SIZE,
+    }}
+    {...props}
+  />
+);
+
+const Coin = (props: React.ComponentProps<typeof CoinView>) => (
+  <CoinView css={{ width: `${COIN_SIZE}em`, marginLeft: 5 }} {...props} />
+);
+
+export const Message = observer<Props>(({ game }) => {
+  if (game.isOver) {
+    if (game.winner === undefined) return <Content>Draw</Content>;
+
+    return (
+      <Content>
+        Winner:
+        <Coin coin={game.winner} />
+      </Content>
+    );
+  }
+
+  if (game.turn !== undefined) {
+    return (
+      <Content>
+        Turn:
+        <Coin coin={game.turn} />
+      </Content>
+    );
+  }
+
+  return null;
+});
