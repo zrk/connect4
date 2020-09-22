@@ -18,9 +18,20 @@ export const Game = observer<Props>(({ board, game, ...props }) => {
   }, [game, board]);
 
   return (
-    <div css={{ '& > *': { margin: 10 } }} {...props}>
-      <Message game={game} />
+    <div
+      css={{
+        display: 'flex',
+        flexFlow: 'column',
+        alignItems: 'center',
+        '& > *': { margin: 10 },
+      }}
+      {...props}
+    >
+      <h2>
+        <Message game={game} />
+      </h2>
       <BoardView
+        css={{ width: '100%' }}
         board={board}
         isGameOver={game.isOver}
         onColumnClick={game.makeMove}
