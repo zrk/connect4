@@ -4,7 +4,8 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { CSSTransition } from 'react-transition-group';
 import { Column } from 'src/ConnectGame';
-import { CoinView, SquareDiv } from './components';
+import { CoinView } from './CoinView';
+import { SquareDiv } from './SquareDiv';
 
 interface Props {
   column: Column;

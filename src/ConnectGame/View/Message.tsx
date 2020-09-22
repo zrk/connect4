@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { observer } from 'mobx-react-lite';
 import { Gameplay } from 'src/ConnectGame';
-import { CoinView } from './components';
+import { CoinView } from './CoinView';
 
 interface Props {
   game: Gameplay;
