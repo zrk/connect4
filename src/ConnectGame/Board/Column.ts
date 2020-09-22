@@ -7,7 +7,7 @@ export class Column implements Interface {
   @observable readonly cells: { [key: number]: CellContent } = {};
 
   constructor(
-    private readonly height = 1,
+    readonly height = 1,
   ) {}
 
   @computed

@@ -14,6 +14,7 @@ export interface CellsObject {
 
 export interface Column extends CellsObject{
   readonly isFull: boolean;
+  readonly height: number;
   insert(coin: Coin): boolean;
 }
 

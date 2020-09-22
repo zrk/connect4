@@ -8,7 +8,7 @@ interface Props {
   game: Gameplay;
 }
 
-const COIN_SIZE = 1.5;
+const COIN_SIZE = 1;
 
 const Content = (props: React.HTMLAttributes<HTMLDivElement>) => (
   <div
