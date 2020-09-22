@@ -5,21 +5,26 @@ import { observer } from 'mobx-react-lite';
 import { Board } from 'src/ConnectGame';
 import { ColumnView } from './ColumnView';
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   board: Board;
   isGameOver?: boolean;
   onColumnClick?(i: number): void;
 }
 
 export const BoardView = observer<Props>(
-  ({ board, isGameOver, onColumnClick }) => {
+  ({
+    board,
+    isGameOver,
+    onColumnClick,
+    ...props
+  }) => {
     const handleColumnClick = React.useCallback(
       (i: number) => () => onColumnClick && onColumnClick(i),
       [onColumnClick],
     );
 
     return (
-      <div css={{ display: 'flex' }}>
+      <div css={{ display: 'flex' }} {...props}>
         {board.columns.map((column, i) => (
           <ColumnView
             // eslint-disable-next-line react/no-array-index-key
