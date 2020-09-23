@@ -15,10 +15,11 @@
 ### Stack
 
 - React
-- MobX
-- TypeScript
-- Emotion
-- Jest
+- MobX, using mobx-react-lite
+- TypeScript in strict mode
+- Emotion CSS-in-JS
+- Create React App setup
+- Jest for unit tests
 
 ### Scripts
 
