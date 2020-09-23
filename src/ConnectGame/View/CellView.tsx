@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { useTheme } from 'emotion-theming';
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { CSSTransition } from 'react-transition-group';
@@ -19,6 +20,7 @@ export const CellView = observer<Props>(({ column, index }) => {
   const cellContent = column.cells[index];
   const offset = ((column.height - index) / coinWidthFactor) * 100;
   const timeout = (maxDropTimeout / column.height) * (column.height - index);
+  const { colors: { blue } } = useTheme();
 
   return (
     <SquareDiv>
@@ -30,7 +32,7 @@ export const CellView = observer<Props>(({ column, index }) => {
           bottom: 0,
           left: 0,
           right: 0,
-          background: 'radial-gradient(transparent 52%, RoyalBlue 55%)',
+          background: `radial-gradient(transparent 52%, ${blue} 55%)`,
         }}
       />
       <CSSTransition

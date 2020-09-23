@@ -1,6 +1,7 @@
 /** @jsx jsx */
-import React from 'react';
 import { jsx } from '@emotion/core';
+import { useTheme } from 'emotion-theming';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { Coin } from 'src/ConnectGame';
 import { SquareDiv } from './SquareDiv';
@@ -15,14 +16,19 @@ const colorsMap = new Map([
   [Coin.Yellow, 'yellow'],
 ]);
 
-export const CoinView = observer<Props>(({ coin, ...props }) => (
-  <SquareDiv
-    css={{
-      boxSizing: 'border-box',
-      background: colorsMap.get(coin),
-      border: '2px solid black',
-      borderRadius: '50%',
-    }}
-    {...props}
-  />
-));
+export const CoinView = observer<Props>(({ coin, ...props }) => {
+  const { colors } = useTheme();
+  const colorName = colorsMap.get(coin);
+  const color = colorName && colors[colorName];
+
+  return (
+    <SquareDiv
+      css={{
+        boxSizing: 'border-box',
+        background: color,
+        borderRadius: '50%',
+      }}
+      {...props}
+    />
+  );
+});
