@@ -24,6 +24,9 @@ export class Board implements Interface {
   private readonly rowMaker = createTransformer<number, Row>(rowNumber => {
     const cellKeys = Array.from(Array(this.width).keys());
 
+    // We form an object of getters
+    // which becomes an object of MobX computed fields
+    // when made observable
     const cells = {};
     this.columns.forEach((column, i) => {
       Object.defineProperty(cells, i, {
